@@ -1,0 +1,25 @@
+version: '2'
+services:
+    backend-server:
+#        container_name: bo-family-backend
+        build:
+            context: backend
+            dockerfile: Dockerfile
+        image: bo-family/backend:latest
+        ports:
+            - 18800-18888:8080
+        networks:
+            - spring-cloud-network
+    frontend-server:
+#        container_name: bo-family-frontend
+        build:
+            context: frontend
+            dockerfile: Dockerfile
+        image: bo-family/frontend:latest
+        ports:
+            - 19900-19988:8081
+        networks:
+            - spring-cloud-network
+networks:
+    spring-cloud-network:
+        driver: bridge
